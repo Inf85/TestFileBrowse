@@ -1,0 +1,87 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: lightgray;
+    width: 70%;
+    margin-top: 40px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+h1{
+    font-size:25px;
+    font-weight:bold;
+    margin-left: 75px;
+}
+
+.MyTable {
+    width: 80%;
+    margin-left: 75px;
+    margin-top: 60px;
+    border: 1px solid black;
+}
+
+.MyTable td {
+     height: 50px;
+     text-align:center;
+     background-color:white;
+    vertical-align: central;
+}
+
+
+.MyTable th {
+    background-color: grey;
+    color: white;
+    height: 50px;
+    text-align: center;
+}
+
+.fileTree{
+    padding 10px 10px 10px 10px;
+}
+
+.panel{
+    width: 80%;
+    margin-left: 75px;
+    border: 10px double #ECECEC;
+    background-color: lightgray;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+.panel a{
+    color:black;
+    font-weight:bold;
+}
+.loading {
+    display: none;
+    position: fixed;
+    z-index:10;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    
+  background:  url('../Content/loading.gif') 50% 50% no-repeat;
+}
+
+.loadMessage{
+
+    position: relative;
+    z-index:11;
+    top: 100;
+    left: 100;
+    
+}

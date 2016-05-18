@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body ng-app="FilesListApp">
+    
+    <div class="content" ng-controller="FilesListController">
+        <loading>
+        </loading>
+            <table class="MyTable" border="1">
+                <th>Less 10 Mb</th>
+                <th>10Mb - 50 Mb</th>
+                <th>More 100Mb</th>
+                <tbody>
+                    <tr>
+                        <td>{{sizes.Small_size}}</td>
+                        <td>{{sizes.Medium_size }}</td>
+                        <td>{{sizes.Large_size }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h1>Current path: {{PathDir}}</h1>
+        <div class="panel">
+            <div class="fileTree" ng-repeat="file in files">
+                <a style="cursor:pointer" ng-click="NavigateFolder(file)">{{file}}</a>
+            </div>
+        </div>
+     </div>
+</body>
+
+
+
+<script src="~/Scripts/Controllers/FileBrowseController.js"></script>
+<script src="~/Scripts/Directives/awaitLoader.js"></script>
+
+</html>
