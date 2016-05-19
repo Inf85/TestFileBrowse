@@ -10,7 +10,7 @@ namespace TestFileBrowser.Models
     public class DriversList
     {
         public const string BaseRoot = "My computer";
-
+        public bool IsFolder;
         protected static List<string> root_items = new List<string>(); //Возвращаемый список каталогов  файлов
         public List<string> Root_Items {
             get { return root_items; }

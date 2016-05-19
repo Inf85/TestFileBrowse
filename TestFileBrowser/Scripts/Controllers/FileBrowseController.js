@@ -21,11 +21,14 @@ app.controller("FilesListController",
           
 
           $http({ url: '/api/files/getfile', params: { root: folder } }).success(function (data) {
-                  $timeout.cancel(await);
+              $timeout.cancel(await);
+              if (data.IsFolder != false) {
+                  
                   $scope.files = data._fileBrowse.Root_Items;
                   $scope.PathDir = data._fileBrowse.Path_dir;
                   $scope.sizes = data.fc;
-                  $scope.loading = false;
+              }
+              $scope.loading = false;
           }).error(function (data) {
               $scope.loading = false;
               alert('Error');

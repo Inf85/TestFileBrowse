@@ -63,8 +63,10 @@ namespace TestFileBrowser.Models
                 Path_dir = null;
                 Root_tree.Remove(Root_tree.Last());
                 MakePathLabel();
+                IsFolder = false;
                 return false;
             }
+            IsFolder = true;
             return true;
         }
 
@@ -73,10 +75,7 @@ namespace TestFileBrowser.Models
         public List<string> GetFilesinRoot(string root)
         {
             this.RootNavigate(root);
-            
-            if (!IsDirectory(Path_dir, root))
-                return null;
-            else
+
             try
                 {
                     root_items = Directory.GetDirectories(Path_dir).Select(d => Path.GetFileName(d)).ToList();

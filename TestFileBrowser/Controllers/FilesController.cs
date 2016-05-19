@@ -31,8 +31,10 @@ namespace TestFileBrowser.Controllers
             _fileBrowse.GetFilesinRoot(root);
 
             FilesCounter fc = new FilesCounter();
-
-            return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, new {_fileBrowse,fc });
+            if (_fileBrowse.IsDirectory(_fileBrowse.Path_dir, root))
+                return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, new { _fileBrowse, fc });
+            else
+                return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, new { _fileBrowse.IsFolder });
         }
     }
 }
