@@ -9,9 +9,9 @@ namespace TestFileBrowser.Models
 
     public class DriversList
     {
-       public const string BaseRoot = "My computer";
+        public const string BaseRoot = "My computer";
 
-        protected static List<string> root_items = new List<string>();
+        protected static List<string> root_items = new List<string>(); //Возвращаемый список каталогов  файлов
         public List<string> Root_Items {
             get { return root_items; }
             set { root_items = value; }
@@ -19,9 +19,8 @@ namespace TestFileBrowser.Models
 
         public string Path_dir; // путь выбранной директории
 
-        public static List<string> Files_temp = new List<string>();
-
-        
+        public static List<string> Root_tree = new List<string>();  // Дерево каталогов
+                
         public DriversList()
         {
             Path_dir = BaseRoot;

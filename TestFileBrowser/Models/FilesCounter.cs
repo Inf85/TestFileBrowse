@@ -9,6 +9,11 @@ namespace TestFileBrowser.Models
 {
     public class FilesCounter
     {
+        const int SizeMin = 10 * 1024 * 1024;
+        const int SizeMax = 100 * 1024 * 1024;
+        const int MidSizeMin = 10 * 1024 * 1024;
+        const int MidSizeMax = 50 * 1024 * 1024;
+
         public static int small_size;  //файлы меньше 10 Мб
         public int Small_size
         {
@@ -66,13 +71,13 @@ namespace TestFileBrowser.Models
                         try
                         {
                             FileInfo fInfo = new FileInfo(@"" + file);
-                            if ((fInfo.Length / 1024 / 1024) < 10)
+                            if (fInfo.Length < SizeMin)
                                 small_size++;
 
-                            if (((fInfo.Length / 1024 / 1024) >= 10) && ((fInfo.Length / 1024 / 1024) <= 50))
+                            if (((fInfo.Length) >= MidSizeMin) && ((fInfo.Length) <= MidSizeMax))
                                 medium_size++;
 
-                            if ((fInfo.Length / 1024 / 1024) > 100)
+                            if (fInfo.Length > SizeMax)
                                 large_size++;
                         }
                         catch {}

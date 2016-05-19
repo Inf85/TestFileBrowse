@@ -18,7 +18,7 @@ namespace TestFileBrowser.Controllers
         public HttpResponseMessage GetPCDrives()
         {
             DriversList _drvList = new DriversList();
-            DriversList.Files_temp.Clear();
+            DriversList.Root_tree.Clear();
             DriversList.GetDrives();
             return ControllerContext.Request.CreateResponse(HttpStatusCode.OK, new {_drvList});
         }

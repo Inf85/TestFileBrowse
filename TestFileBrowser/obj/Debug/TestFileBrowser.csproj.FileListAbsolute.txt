@@ -53,4 +53,3 @@ E:\developer\C#\TestFileBrowser\TestFileBrowser\bin\ru\System.Web.WebPages.Deplo
 E:\developer\C#\TestFileBrowser\TestFileBrowser\bin\ru\System.Web.WebPages.Razor.resources.dll
 E:\developer\C#\TestFileBrowser\TestFileBrowser\obj\Debug\TestFileBrowser.dll
 E:\developer\C#\TestFileBrowser\TestFileBrowser\obj\Debug\TestFileBrowser.pdb
-E:\developer\C#\TestFileBrowser\TestFileBrowser\obj\Debug\TestFileBrowser.csprojResolveAssemblyReference.cache

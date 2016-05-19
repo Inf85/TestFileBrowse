@@ -73,15 +73,5 @@ h1{
     left: 0;
     height: 100%;
     width: 100%;
-    
-  background:  url('../Content/loading.gif') 50% 50% no-repeat;
-}
-
-.loadMessage{
-
-    position: relative;
-    z-index:11;
-    top: 100;
-    left: 100;
-    
+    background: url('../Content/loading.gif') 50% 50% no-repeat;
 }

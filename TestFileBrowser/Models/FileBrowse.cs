@@ -9,77 +9,89 @@ namespace TestFileBrowser.Models
     public class FileBrowse:DriversList
     {
         
-        static object locker = new object();
-        
-        
+              
             public FileBrowse()
             {
                Path_dir = null;
             }
 
+
+        public void MakePathLabel() // Складываем в переменную путь текущего каталога
+        {
+            foreach (var _root in Root_tree)
+            {
+                Path_dir += _root;
+            }
+
+        }
+
+        public void MakePath(string root) // Дерево каталогов (убираем "\\" в названии дисков)
+        {
+            if (root.Contains(@"\"))
+                Root_tree.Add(root);
+            else
+                Root_tree.Add(root + @"\");
+        }
+        
+        public List<string> RootNavigate(string root)  // Метод навигации по каталогам
+        {
+            if (root == "..")  //Если выбран переход на уровень вверх
+            {
+                if (Root_tree.Count > 0) // Убираем из пути последнюю директорию
+                    Root_tree.Remove(Root_tree.Last());
+                
+                if (Root_tree.Count == 0)  //Если папка была корневая
+                {
+                     Path_dir = DriversList.BaseRoot;
+                     return DriversList.GetDrives(); // Отображаем список дисков
+                }
+
+            }
+            else
+            {
+                MakePath(root);
+            }
+
+            MakePathLabel();
+            return Root_tree;
+        }
+
+        public bool IsDirectory(string path, string root) //Проверяем выбрана директория или файл
+        {
+            if (!Directory.Exists(Path_dir) && (root != ".."))
+            {
+                Path_dir = null;
+                Root_tree.Remove(Root_tree.Last());
+                MakePathLabel();
+                return false;
+            }
+            return true;
+        }
+
         // Перебор файлов в папке включая подкаталоги
 
         public List<string> GetFilesinRoot(string root)
         {
-            lock(locker)
-            {
-                if (root == "..")
-                {
-                    if (Files_temp.Count > 0)
-                        Files_temp.Remove(Files_temp.Last());
-
-                    if (Files_temp.Count == 0)
-                    {
-                        Path_dir = DriversList.BaseRoot;
-                        return DriversList.GetDrives();
-                    }
-                    
-                }
-                else
-                {
-                    if (root.Contains(@"\"))
-                         Files_temp.Add(root);
-                    else
-                        Files_temp.Add(root + @"\");
-
-                }
-
-                foreach (var _root in Files_temp)
-                {
-                    Path_dir += _root;
-                }
-
-                if (!Directory.Exists(Path_dir)&&(root!=".."))
-                {
-                    Path_dir = null;
-                    Files_temp.Remove(Files_temp.Last());
-                    foreach (var _no_root in Files_temp)
-                    {
-                        Path_dir += _no_root;
-                    }
-                    return root_items;
-                }
-                
-
-                try
+            this.RootNavigate(root);
+            
+            if (!IsDirectory(Path_dir, root))
+                return null;
+            else
+            try
                 {
                     root_items = Directory.GetDirectories(Path_dir).Select(d => Path.GetFileName(d)).ToList();
                     root_items.AddRange(Directory.GetFiles(Path_dir).Select(f => Path.GetFileName(f)));
+                    root_items.Insert(0, "..");
+            }
+            catch { }
 
-                }
-                catch { }
-
-                finally
+            finally
                 {
                     FilesCounter.Clear_Counter();
                     FilesCounter.FilesSizeCount(Path_dir);
-                    if (root_items != null)
-                        root_items.Insert(0, "..");
 
                 }
-                return root_items;
-                
-            }
+          return root_items;
         }
     }
 }
